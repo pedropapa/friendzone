@@ -33,6 +33,9 @@
             ],
             "styles": [
               {
+                "input": "src/theme/ionic.mixins.scss"
+              },
+              {
                 "input": "src/theme/variables.scss"
               },
               {

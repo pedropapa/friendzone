@@ -1,0 +1,28 @@
+@import '../../global.scss';
+
+ion-content {
+  --ion-background-color: #32325B;
+}
+
+.conteudo {
+  @include center(true, true);
+  width: 80%;
+}
+
+.botao {
+  margin: 80px auto;
+  display: flex;
+  align-items: center;
+
+  background: #E55461;
+  border-radius: 10px;
+  font-family: Helvetica;
+  font-size: 18px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 20px;
+
+  img {
+    margin-right: 10px;
+  }
+}
