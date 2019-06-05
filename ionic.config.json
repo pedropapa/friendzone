@@ -1,5 +1,7 @@
 {
   "name": "friendzone",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
