@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, ModalController} from '@ionic/angular';
+import {AlertController} from '@ionic/angular';
 import {Facebook} from '@ionic-native/facebook/ngx';
 import {AuthService} from '../services/auth.service';
+import {ImportarDadosService} from '../services/importar-dados.service';
 
 @Component({
   selector: 'app-login',
@@ -11,24 +12,19 @@ import {AuthService} from '../services/auth.service';
 export class LoginPage implements OnInit {
 
   constructor(
-    public modalCtrl: ModalController,
+    public importarDados: ImportarDadosService,
     private fb: Facebook,
     public auth: AuthService,
     public alert: AlertController,
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
   }
 
   async entrar() {
-    const modalCarregando = await this.modalCtrl.create({
-      component: 'CarregarDadosPage',
-      // enterAnimation: FadeTransition,
-      // leaveAnimation: FadeTransition,
-    });
-
-    modalCarregando.present();
+    await this.importarDados.mostrarCarregamento();
 
     try {
       const dadosLogin = await this.fb.login([
@@ -37,7 +33,14 @@ export class LoginPage implements OnInit {
 
       this.auth.facebookAuthData = dadosLogin.authResponse;
 
-      modalCarregando.dismiss();
+      this.importarDados.listaAmigos = await this.fb.api(
+        `/${this.auth.facebookAuthData.userID}/friends?fields=name,id,picture.type(large)`,
+        ['user_friends']
+      );
+
+      console.log(this.importarDados.listaAmigos);
+
+      // this.importarDados.esconderCarregamento();
     } catch (err) {
       console.error(err);
 
@@ -48,7 +51,7 @@ export class LoginPage implements OnInit {
 
       alerta.present();
 
-      modalCarregando.dismiss();
+      // this.importarDados.esconderCarregamento();
     }
   }
 }

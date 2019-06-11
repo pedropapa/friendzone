@@ -1,0 +1,110 @@
+:host {
+  --ion-background-color: #D5DAE9;
+}
+
+.graph, .logo {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.logo {
+  animation: bounce 5s infinite linear;
+}
+
+.graph {
+  width: 210px;
+  height: 210px;
+  animation: blink 5s infinite linear;
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    animation: pulse 5s infinite linear;
+  }
+}
+
+.list-container {
+  animation: blink 5s infinite linear;
+  background-color: #EFF1F6;
+  width: 100%;
+  padding: 20px;
+
+  .item {
+    background-color: #D5DAE9;
+    width: 100%;
+    height: 60px;
+    margin: 10px 0;
+
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 250vw;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translate(10%, 5%);
+  }
+
+  50% {
+    transform: translate(-8%, -3%);
+    opacity: 0.3;
+  }
+
+  75% {
+    transform: translate(12%, 9%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0
+  }
+  100% {
+    background-position: 468px 0
+  }
+}
+
+@keyframes pulse {
+  0% {
+    width: 210px;
+  }
+  50% {
+    width: 180px;
+  }
+  100% {
+    width: 210px;
+  }
+}

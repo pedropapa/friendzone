@@ -10,10 +10,17 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {Facebook} from '@ionic-native/facebook/ngx';
 import {AuthService} from './services/auth.service';
+import {ImportarDadosService} from './services/importar-dados.service';
+import {CarregarDadosPage} from './carregar-dados/carregar-dados.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+    CarregarDadosPage,
+  ],
+  entryComponents: [
+    CarregarDadosPage,
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -25,6 +32,7 @@ import {AuthService} from './services/auth.service';
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     Facebook,
     AuthService,
+    ImportarDadosService,
   ],
   bootstrap: [AppComponent]
 })
