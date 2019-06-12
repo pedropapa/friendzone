@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
+      <ion-buttons slot="end">
+          <ion-button fill="clear" (click)="fechar()">
+              <ion-icon slot="icon-only" color="tertiary" name="md-close"></ion-icon>
+          </ion-button>
+      </ion-buttons>
     <ion-title>Fazer Pergunta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <div class="pergunta-container">
+        <form [formGroup]="formGroup" (submit)="confirmar()">
+            <div class="titulo">Fazendo pergunta para {{ amigo.name }}.</div>
 
+            <ion-item>
+                <ion-label position="floating">
+                    Título
+                </ion-label>
+
+                <ion-input placeholder="Ex: Minha primeira pergunta..." formControlName="titulo"></ion-input>
+            </ion-item>
+
+            <small *ngIf="formGroup.controls.titulo.invalid">
+                Título requerido, máximo de 128 caracteres.
+            </small>
+
+            <button type="submit" class="botao" [disabled]="formGroup.invalid">Enviar</button>
+        </form>
+    </div>
 </ion-content>

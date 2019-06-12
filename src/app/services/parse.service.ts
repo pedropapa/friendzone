@@ -169,4 +169,17 @@ export class ParseService {
 
     return depoimento.save(null, {useMasterKey: true});
   }
+
+  public async criarPergunta(titulo: string, usuario: FacebookUser): Promise<any> {
+    const PerguntaModel = Parse.Object.extend('Pergunta');
+
+    const pergunta = new PerguntaModel();
+
+    pergunta.set('usuarioId', usuario.id);
+    pergunta.set('atribuidoPor', this.auth.facebookUserData.id);
+    pergunta.set('titulo', titulo);
+    pergunta.set('escondido', false);
+
+    return pergunta.save(null, {useMasterKey: true});
+  }
 }

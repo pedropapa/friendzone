@@ -45,7 +45,6 @@ export class FazerDepoimentoPage implements OnInit {
   }
 
   public async confirmar() {
-    console.log('>>> confirmando');
     const alert = await this.alert.create({
       header: 'Depoimento',
       message: 'Deseja realmente enviar o depoimento?',
