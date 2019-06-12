@@ -22,6 +22,18 @@ export class ParseService {
     return new Parse.Query(model);
   }
 
+  public depoimento(depoimento: DepoimentoInterface) {
+    const query = this.query('Depoimento');
+
+    return from(query.get(depoimento.objectId));
+  }
+
+  public pergunta(pergunta: PerguntaInterface) {
+    const query = this.query('Pergunta');
+
+    return from(query.get(pergunta.objectId));
+  }
+
   public depoimentos(userId: string, mostrarEscondidos?: boolean, limite?: number): Observable<Array<DepoimentoInterface>> {
     const query = this.query('Depoimento');
 

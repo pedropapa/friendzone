@@ -6,6 +6,7 @@ export interface UsuarioAdjetivoInterface {
 }
 
 export interface PerguntaInterface {
+  objectId: string,
   usuarioId: string;
   titulo: string;
   resposta: string;
@@ -13,6 +14,7 @@ export interface PerguntaInterface {
 }
 
 export interface DepoimentoInterface {
+  objectId: string,
   usuarioId: string;
   titulo: string;
   descricao: string;

@@ -51,8 +51,10 @@
                             </div>
                         </div>
                         <div class="acoes">
-                            <img src="assets/visivel.svg" *ngIf="!depoimento.escondido" tappable/>
-                            <img src="assets/escondido.svg" *ngIf="depoimento.escondido" tappable/>
+                            <img src="assets/visivel.svg" *ngIf="!depoimento.escondido" tappable
+                                 (click)="esconderDepoimento(depoimento)"/>
+                            <img src="assets/escondido.svg" *ngIf="depoimento.escondido" tappable
+                                 (click)="mostrarDepoimento(depoimento)"/>
                         </div>
                     </div>
                 </div>
@@ -80,8 +82,10 @@
                             </div>
                         </div>
                         <div class="acoes">
-                            <img src="assets/visivel.svg" *ngIf="!pergunta.escondido" tappable/>
-                            <img src="assets/escondido.svg" *ngIf="pergunta.escondido" tappable/>
+                            <img src="assets/visivel.svg" *ngIf="!pergunta.escondido" tappable
+                                 (click)="ignorarPergunta(pergunta)"/>
+                            <img src="assets/escondido.svg" *ngIf="pergunta.escondido" tappable
+                                 (click)="alertaPerguntaIgnorada()"/>
                         </div>
                     </div>
                 </div>
