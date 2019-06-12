@@ -54,13 +54,9 @@
                     </div>
                 </div>
 
-                <div class="depoimento-registros" *ngIf="!dados[0].length">
-                    <div class="registro">
-                        <div class="descricao">
-                            Você ainda não recebeu depoimentos =(
-                        </div>
-                    </div>
-                </div>
+                <app-estado-vazio *ngIf="!dados[0].length">
+                    Você ainda não recebeu depoimentos =(
+                </app-estado-vazio>
             </div>
 
         </ng-container>

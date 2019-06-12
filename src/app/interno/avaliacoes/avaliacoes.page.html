@@ -32,10 +32,6 @@
             <div class="skel-line"></div>
         </div>
         <div *casoResultado="let dados">
-            <div *ngIf="!dados[0].length" class="logo go-up">
-                <img src="assets/logo-only.svg"/>
-            </div>
-
             <div class="adjetivos-container go-up delay-1">
                 <div class="adjetivos-registros" *ngIf="dados[0].length">
                     <div class="registro go-up" [ngClass]="['delay-' + i]"
@@ -48,15 +44,11 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="adjetivos-registros" *ngIf="!dados[0].length">
-                    <div class="registro">
-                        <div class="descricao">
-                            Você ainda não recebeu adjetivos =(
-                        </div>
-                    </div>
-                </div>
             </div>
+
+            <app-estado-vazio *ngIf="!dados[0].length">
+                Você ainda não recebeu adjetivos =(
+            </app-estado-vazio>
         </div>
     </ng-container>
 </ion-content>
