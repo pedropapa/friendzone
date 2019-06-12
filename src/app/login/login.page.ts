@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController} from '@ionic/angular';
+import {AlertController, NavController} from '@ionic/angular';
 import {Facebook} from '@ionic-native/facebook/ngx';
 import {AuthService} from '../services/auth.service';
 import {ImportarDadosService} from '../services/importar-dados.service';
@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
   constructor(
     public importarDados: ImportarDadosService,
     private fb: Facebook,
+    public navCtrl: NavController,
     public auth: AuthService,
     public alert: AlertController,
   ) {
@@ -40,7 +41,7 @@ export class LoginPage implements OnInit {
 
       console.log(this.importarDados.listaAmigos);
 
-      // this.importarDados.esconderCarregamento();
+      this.navCtrl.navigateForward(['interno/meu-perfil']);
     } catch (err) {
       console.error(err);
 
@@ -50,8 +51,6 @@ export class LoginPage implements OnInit {
       });
 
       alerta.present();
-
-      // this.importarDados.esconderCarregamento();
     }
   }
 }

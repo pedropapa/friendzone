@@ -1,3 +1,5 @@
+@import "../../global";
+
 :host {
   --ion-background-color: #D5DAE9;
 }
@@ -85,15 +87,6 @@
 
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes placeHolderShimmer {
-  0% {
-    background-position: -468px 0
-  }
-  100% {
-    background-position: 468px 0
   }
 }
 

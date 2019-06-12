@@ -1,9 +1,99 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>meu-perfil</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Dashboard</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-refresher slot="fixed" (ionRefresh)="buscarDados($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
+    <div class="grafico" [hidden]="!multi.length">
+        <ngx-charts-pie-chart
+                [animations]="true"
+                [labels]="true"
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="multi"
+                [gradient]="gradient"
+                [legend]="showLegend">
+        </ngx-charts-pie-chart>
+    </div>
+
+    <ng-container [apresentarAsync]="requisicoes$">
+        <div *casoCarregando>
+            <div class="graph">
+                <img src="assets/graph-placeholder.svg"/>
+            </div>
+
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+        </div>
+        <div *casoResultado="let dados">
+            <div *ngIf="!dados[2].length" class="logo go-up">
+                <img src="assets/logo-only.svg"/>
+            </div>
+
+            <div class="depoimento-container go-up">
+                <div class="depoimento-titulo">
+                    Depoimentos
+                </div>
+
+                <div class="depoimento-registros" *ngIf="dados[0].length">
+                    <div class="registro" *ngFor="let depoimento of dados[0]">
+                        <div class="dados">
+                            <div class="titulo">{{ depoimento.titulo }}</div>
+                            <div class="descricao">
+                                {{ depoimento.descricao }}
+                            </div>
+                        </div>
+                        <div class="acoes">
+                            <img src="assets/visivel.svg" *ngIf="!depoimento.escondido" tappable/>
+                            <img src="assets/escondido.svg" *ngIf="depoimento.escondido" tappable/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-registros" *ngIf="!dados[0].length">
+                    <div class="registro">
+                        <div class="descricao">
+                            Você ainda não recebeu depoimentos =(
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pergunta-container go-up delay-1">
+                <div class="pergunta-titulo">
+                    Perguntas
+                </div>
+
+                <div class="pergunta-registros" *ngIf="dados[1].length">
+                    <div class="registro" *ngFor="let pergunta of dados[1]">
+                        <div class="dados">
+                            <div class="titulo">{{ pergunta.titulo }}</div>
+                            <div class="descricao">
+                                {{ pergunta.descricao }}
+                            </div>
+                        </div>
+                        <div class="acoes">
+                            <img src="assets/visivel.svg" *ngIf="!pergunta.escondido" tappable/>
+                            <img src="assets/escondido.svg" *ngIf="pergunta.escondido" tappable/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pergunta-registros" *ngIf="!dados[1].length">
+                    <div class="registro">
+                        <div class="descricao">
+                            Você ainda não recebeu perguntas =(
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
 </ion-content>

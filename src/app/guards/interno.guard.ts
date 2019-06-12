@@ -5,6 +5,6 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class InternoGuard implements  {
+export class InternoGuard  {
   
 }

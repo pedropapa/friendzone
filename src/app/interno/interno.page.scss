@@ -1,0 +1,15 @@
+:host {
+  --ion-background-color: #DDDDDD;
+
+  ion-tab-button {
+    --background-focused: #FFF;
+    --background: #5E5B88;
+    --color: #FFF;
+    --color-selected: #E55561;
+
+    &:nth-child(3) {
+      --background-focused: #FF878E;
+      --background: #E55561;
+    }
+  }
+}
