@@ -7,6 +7,7 @@ export interface UsuarioAdjetivoInterface {
 
 export interface PerguntaInterface {
   objectId: string,
+  createdAt: string,
   usuarioId: string;
   titulo: string;
   resposta: string;
@@ -15,6 +16,7 @@ export interface PerguntaInterface {
 
 export interface DepoimentoInterface {
   objectId: string,
+  createdAt: string,
   usuarioId: string;
   titulo: string;
   descricao: string;

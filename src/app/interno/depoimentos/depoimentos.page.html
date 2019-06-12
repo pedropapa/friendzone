@@ -1,9 +1,68 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Meus Depoimentos</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Meus Depoimentos</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="buscarDados($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
+    <div class="depoimento-container">
+        <ng-container [apresentarAsync]="requisicoes$">
+            <div *casoCarregando>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+            </div>
+            <div *casoResultado="let dados">
+                <div class="depoimento-registros" *ngIf="dados[0].length">
+                    <div class="registro go-up" [ngClass]="['delay-' + i]"
+                         *ngFor="let depoimento of dados[0]; let i = index">
+                        <div class="dados">
+                            <div class="titulo">{{ depoimento.titulo }}</div>
+                            <div class="descricao">
+                                {{ depoimento.descricao }}
+                            </div>
+
+                            <div class="acoes">
+                                <div class="acao" *ngIf="!depoimento.escondido"
+                                     (click)="esconderDepoimento(depoimento)">
+                                    <img src="assets/visivel.svg" tappable alt=""/>
+                                    <div>
+                                        Esconder
+                                    </div>
+                                </div>
+                                <div class="acao" *ngIf="depoimento.escondido" (click)="mostrarDepoimento(depoimento)">
+                                    <img src="assets/escondido.svg" tappable/>
+                                    <div>
+                                        Mostrar
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="horario">
+                            {{ depoimento.createdAt | date: 'HH:mm' }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-registros" *ngIf="!dados[0].length">
+                    <div class="registro">
+                        <div class="descricao">
+                            Você ainda não recebeu depoimentos =(
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ng-container>
+    </div>
 </ion-content>
