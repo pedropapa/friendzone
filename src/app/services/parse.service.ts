@@ -73,6 +73,10 @@ export class ParseService {
 
     const resultado: Array<UsuarioAdjetivoInterface> = [];
 
+    let total = 0;
+
+    adjetivos.forEach(() => ++total);
+
     adjetivos.forEach(adjetivo => {
       const registro = resultado.find(adv => adv.adjetivo === adjetivo.adjetivo);
 
@@ -81,9 +85,11 @@ export class ParseService {
           adjetivo: adjetivo.adjetivo,
           quantidade: 1,
           usuarioId: (this.auth.facebookAuthData) ? this.auth.facebookAuthData.userID : '',
+          porcentagem: parseFloat((100 / total).toFixed(1)),
         });
       } else {
         registro.quantidade += 1;
+        registro.porcentagem = parseFloat(((100 * registro.quantidade) / total).toFixed(1));
       }
     });
 

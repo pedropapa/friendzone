@@ -32,6 +32,7 @@ export class MeuPerfilPage {
   }
 
   public buscarDados(refresher?: any) {
+    this.multi = [];
     this.requisicoes$ = forkJoin(
       this.parse.depoimentos('12313', true, 5),
       this.parse.perguntas('12313', true, 5),

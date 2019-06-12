@@ -1,9 +1,63 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Avaliações</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Avaliações</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-refresher slot="fixed" (ionRefresh)="buscarDados($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
+    <div class="grafico" [hidden]="!multi.length">
+        <ngx-charts-pie-chart
+                [animations]="true"
+                [labels]="true"
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="multi"
+                [gradient]="gradient"
+                [legend]="showLegend">
+        </ngx-charts-pie-chart>
+    </div>
+
+    <ng-container [apresentarAsync]="requisicoes$">
+        <div *casoCarregando>
+            <div class="graph">
+                <img src="assets/graph-placeholder.svg"/>
+            </div>
+
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+        </div>
+        <div *casoResultado="let dados">
+            <div *ngIf="!dados[0].length" class="logo go-up">
+                <img src="assets/logo-only.svg"/>
+            </div>
+
+            <div class="adjetivos-container go-up delay-1">
+                <div class="adjetivos-registros" *ngIf="dados[0].length">
+                    <div class="registro go-up" [ngClass]="['delay-' + i]"
+                         *ngFor="let adjetivos of dados[0]; let i = index">
+                        <div class="dados">
+                            <div class="titulo">{{ adjetivos.adjetivo }}</div>
+                        </div>
+                        <div class="acoes">
+                            {{ adjetivos.porcentagem }}%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adjetivos-registros" *ngIf="!dados[0].length">
+                    <div class="registro">
+                        <div class="descricao">
+                            Você ainda não recebeu adjetivos =(
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
 </ion-content>

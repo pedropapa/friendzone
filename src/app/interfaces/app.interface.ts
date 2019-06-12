@@ -2,6 +2,7 @@ export interface UsuarioAdjetivoInterface {
   usuarioId: string;
   adjetivo: string;
   quantidade: number;
+  porcentagem: number;
 }
 
 export interface PerguntaInterface {
