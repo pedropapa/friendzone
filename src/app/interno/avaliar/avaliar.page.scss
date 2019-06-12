@@ -1,0 +1,71 @@
+@import "../../../global";
+
+:host {
+  ion-toolbar {
+    --background: #5E5B88;
+    --color: #FFF;
+  }
+}
+
+.amigos-container {
+  .amigo-container {
+    background-color: #FFF;
+    border: 1px solid #64618C;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+
+    .avatar {
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .nome {
+      margin: 20px auto;
+      font-weight: bold;
+      font-size: 25px;
+      color: #64618C;
+    }
+
+    .acoes {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .acao {
+        margin: 10px;
+        div {
+          font-size: 15px;
+          color: #E55461;
+        }
+      }
+    }
+  }
+}
+
+.semAmigos {
+  margin: 40px;
+}
+
+.adjetivos {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFF;
+  padding: 15px;
+  max-height: 130px;
+  overflow-y: scroll;
+  flex-flow: row wrap;
+  display: flex;
+  align-items: center;
+
+  .adjetivo {
+    border: 1px solid #E55461;
+    color: #E55461;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+  }
+}

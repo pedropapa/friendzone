@@ -4,6 +4,7 @@ import {AlertController, LoadingController, Platform, ToastController} from '@io
 import {ParseService} from '../../services/parse.service';
 import {PerguntaInterface} from '../../interfaces/app.interface';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-perguntas',
@@ -29,13 +30,14 @@ export class PerguntasPage {
     public loading: LoadingController,
     public toast: ToastController,
     public alert: AlertController,
+    public auth: AuthService,
   ) {
     this.buscarDados();
   }
 
   public buscarDados(refresher?: any) {
     this.requisicoes$ = forkJoin(
-      this.parse.perguntas('12313', false),
+      this.parse.perguntas(this.auth.facebookUserData.id, false),
     );
 
     this.requisicoes$.subscribe(() => {

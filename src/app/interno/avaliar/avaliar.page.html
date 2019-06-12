@@ -1,9 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>avaliar</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Avaliar</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <div class="amigos-container">
+        <ion-slides #slides *ngIf="amigos && amigos.data.length" (ionSlideTransitionEnd)="carregarAdjetivos()">
+            <ion-slide *ngFor="let amigo of amigos.data">
+                <div class="amigo-container">
+                    <div class="avatar">
+                        <img [src]="amigo.picture.data.url" alt="" width="300px"/>
+                    </div>
 
+                    <div class="nome">
+                        {{ amigo.name }}
+                    </div>
+
+                    <div class="acoes">
+                        <div class="acao go-up" (click)="toggleSelecaoAdjetivos()">
+                            <img src="assets/acao-adjetivos.svg"/>
+
+                            <div>Adjetivos</div>
+                        </div>
+
+                        <div class="acao go-up delay-1">
+                            <img src="assets/acao-depoimentos.svg"/>
+
+                            <div>Fazer Depoimento</div>
+                        </div>
+
+                        <div class="acao go-up delay-2">
+                            <img src="assets/acao-perguntas.svg"/>
+
+                            <div>Fazer Pergunta</div>
+                        </div>
+                    </div>
+                </div>
+
+            </ion-slide>
+        </ion-slides>
+
+        <div class="semAmigos" *ngIf="!amigos || !amigos.data.length">
+            Você ainda não possui amigos com o aplicativo instalado para avaliar =(
+        </div>
+    </div>
 </ion-content>
+
+<div class="adjetivos go-up" *ngIf="mostrarSelecaoAdjetivos">
+    <ng-container [apresentarAsync]="adjetivos$">
+        <ng-container *casoCarregando>
+            <div class="skel-line"></div>
+            <div class="skel-line"></div>
+        </ng-container>
+
+        <ng-container *casoResultado="let adjetivos">
+            <div tappable class="adjetivo" *ngFor="let adjetivo of adjetivos"
+                 (click)="atribuirAdjetivo(adjetivo)">
+                {{ adjetivo.nome }}
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

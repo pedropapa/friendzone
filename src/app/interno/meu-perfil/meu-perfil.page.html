@@ -1,5 +1,15 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar text-center>
+        <ion-buttons slot="start">
+            <ion-avatar>
+                <img [src]="imagemPerfil" alt="" width="35px"/>
+            </ion-avatar>
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+            <div routerLink="/login">Sair</div>
+        </ion-buttons>
+
         <ion-title>Dashboard</ion-title>
     </ion-toolbar>
 </ion-header>

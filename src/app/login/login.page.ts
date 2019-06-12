@@ -39,7 +39,12 @@ export class LoginPage implements OnInit {
         ['user_friends']
       );
 
-      console.log(this.importarDados.listaAmigos);
+      this.auth.facebookUserData = await this.fb.api(
+        `/${this.auth.facebookAuthData.userID}?fields=name,id,picture.type(large)`,
+        ['public_profile']
+      );
+
+      console.log(JSON.stringify(this.importarDados.listaAmigos), this.auth.facebookUserData);
 
       this.navCtrl.navigateForward(['interno/meu-perfil']);
     } catch (err) {

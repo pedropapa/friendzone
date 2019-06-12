@@ -3,11 +3,13 @@ import * as Parse from 'parse';
 import {environment} from '../../environments/environment';
 import {from, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {DepoimentoInterface, PerguntaInterface, UsuarioAdjetivoInterface} from '../interfaces/app.interface';
+import {AdjetivoInterface, DepoimentoInterface, PerguntaInterface, UsuarioAdjetivoInterface} from '../interfaces/app.interface';
 import {AuthService} from './auth.service';
+import {FacebookUser} from '../interfaces/facebook.interface';
 
-Parse.initialize(environment.parse_app_id, environment.parse_js_key);
+Parse.initialize(environment.parse_app_id, environment.parse_js_key, environment.parse_master_key);
 (Parse as any).serverURL = environment.parse_server_url;
+(Parse as any).masterKey = environment.parse_master_key;
 
 @Injectable({
   providedIn: 'root'
@@ -82,10 +84,14 @@ export class ParseService {
     );
   }
 
-  public async adjetivos(userId: string): Promise<Array<UsuarioAdjetivoInterface>> {
+  public async adjetivos(userId: string, atribuidoPor?: string): Promise<Array<UsuarioAdjetivoInterface>> {
     const query = this.query('UsuarioAdjetivo');
 
     query.equalTo('usuarioId', userId);
+
+    if (atribuidoPor) {
+      query.equalTo('atribuidoPor', atribuidoPor);
+    }
 
     const adjetivos = await from(query.find()).pipe(
       map(adjetivos => adjetivos.map(val => val.toJSON())),
@@ -117,12 +123,36 @@ export class ParseService {
   }
 
   public todosAdjetivos(): Observable<Array<any>> {
-    const query = this.query('Adjetivo');
+    const query = this.query('Adjetivos');
 
     query.ascending('nome');
 
     return from(query.find()).pipe(
       map(adjetivos => adjetivos.map(val => val.toJSON())),
     );
+  }
+
+  public async atribuirAdjetivo(adjetivo: AdjetivoInterface, usuario: FacebookUser): Promise<any> {
+    const query = this.query('UsuarioAdjetivo');
+
+    query.equalTo('usuarioId', usuario.id);
+    query.equalTo('atribuidoPor', this.auth.facebookUserData.id);
+    query.equalTo('adjetivo', adjetivo.nome);
+
+    const adjetivoAtribuido = await query.first();
+
+    if (adjetivoAtribuido) {
+      throw 'Adjetivo já atribuído para esse usuário.';
+    }
+
+    const UsuarioAdjetivoModel = Parse.Object.extend('UsuarioAdjetivo');
+
+    const usuarioAdjetivo = new UsuarioAdjetivoModel();
+
+    usuarioAdjetivo.set('usuarioId', usuario.id);
+    usuarioAdjetivo.set('atribuidoPor', this.auth.facebookUserData.id);
+    usuarioAdjetivo.set('adjetivo', adjetivo.nome);
+
+    return usuarioAdjetivo.save(null, {useMasterKey: true});
   }
 }

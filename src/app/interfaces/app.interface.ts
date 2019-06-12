@@ -5,6 +5,13 @@ export interface UsuarioAdjetivoInterface {
   porcentagem: number;
 }
 
+export interface AdjetivoInterface {
+  objectId: string,
+  createdAt: string,
+  nome: string;
+  positivo: boolean;
+}
+
 export interface PerguntaInterface {
   objectId: string,
   createdAt: string,

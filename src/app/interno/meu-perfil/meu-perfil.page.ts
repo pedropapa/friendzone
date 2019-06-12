@@ -1,15 +1,17 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {AlertController, LoadingController, Platform, ToastController} from '@ionic/angular';
 import {ParseService} from '../../services/parse.service';
 import {forkJoin, Observable} from 'rxjs';
 import {DepoimentoInterface, PerguntaInterface, UsuarioAdjetivoInterface} from '../../interfaces/app.interface';
+import {AuthService} from '../../services/auth.service';
+import {ImportarDadosService} from '../../services/importar-dados.service';
 
 @Component({
   selector: 'app-meu-perfil',
   templateUrl: './meu-perfil.page.html',
   styleUrls: ['./meu-perfil.page.scss'],
 })
-export class MeuPerfilPage {
+export class MeuPerfilPage implements AfterViewInit {
   view: any[] = [this.platform.width() * 0.9, this.platform.width() * 0.6];
 
   // options
@@ -24,22 +26,35 @@ export class MeuPerfilPage {
 
   public requisicoes$: Observable<any>;
 
+  public imagemPerfil: string;
+
   constructor(
     public platform: Platform,
     public parse: ParseService,
     public loading: LoadingController,
     public toast: ToastController,
+    public auth: AuthService,
+    public importarDados: ImportarDadosService,
     public alert: AlertController,
   ) {
     this.buscarDados();
+
+    this.imagemPerfil = (this.auth.facebookUserData)
+      ? this.auth.facebookUserData.picture.data.url :
+      'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2700021496678896&height=200&width=200&ext=1562941723&h' +
+      'ash=AeQJjKJGIU_uMOU_';
+  }
+
+  ngAfterViewInit() {
+    this.importarDados.esconderCarregamento();
   }
 
   public buscarDados(refresher?: any) {
     this.multi = [];
     this.requisicoes$ = forkJoin(
-      this.parse.depoimentos('12313', true, 5),
-      this.parse.perguntas('12313', true, 5),
-      this.parse.adjetivos('12313'),
+      this.parse.depoimentos(this.auth.facebookUserData.id, true, 5),
+      this.parse.perguntas(this.auth.facebookUserData.id, true, 5),
+      this.parse.adjetivos(this.auth.facebookUserData.id),
     );
 
     this.requisicoes$.subscribe(resultado => {

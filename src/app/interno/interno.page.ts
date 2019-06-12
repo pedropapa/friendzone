@@ -1,18 +1,13 @@
-import {AfterViewInit, Component} from '@angular/core';
-import {ImportarDadosService} from '../services/importar-dados.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-interno',
   templateUrl: './interno.page.html',
   styleUrls: ['./interno.page.scss'],
 })
-export class InternoPage implements AfterViewInit {
+export class InternoPage {
 
-  constructor(public importarDados: ImportarDadosService) {
-  }
-
-  ngAfterViewInit() {
-    this.importarDados.esconderCarregamento();
+  constructor() {
   }
 
 }

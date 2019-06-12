@@ -3,6 +3,7 @@ import {forkJoin, Observable} from 'rxjs';
 import {AlertController, LoadingController, Platform, ToastController} from '@ionic/angular';
 import {ParseService} from '../../services/parse.service';
 import {DepoimentoInterface} from '../../interfaces/app.interface';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-depoimentos',
@@ -17,6 +18,7 @@ export class DepoimentosPage {
     public parse: ParseService,
     public loading: LoadingController,
     public toast: ToastController,
+    public auth: AuthService,
     public alert: AlertController,
   ) {
     this.buscarDados();
@@ -24,7 +26,7 @@ export class DepoimentosPage {
 
   public buscarDados(refresher?: any) {
     this.requisicoes$ = forkJoin(
-      this.parse.depoimentos('12313', true),
+      this.parse.depoimentos(this.auth.facebookUserData.id, true),
     );
 
     this.requisicoes$.subscribe(() => {

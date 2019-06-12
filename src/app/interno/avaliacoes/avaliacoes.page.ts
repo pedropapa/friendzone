@@ -3,6 +3,7 @@ import {forkJoin, Observable} from 'rxjs';
 import {Platform} from '@ionic/angular';
 import {UsuarioAdjetivoInterface} from '../../interfaces/app.interface';
 import {ParseService} from '../../services/parse.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-avaliacoes',
@@ -27,6 +28,7 @@ export class AvaliacoesPage implements OnInit {
   constructor(
     public platform: Platform,
     public parse: ParseService,
+    public auth: AuthService,
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class AvaliacoesPage implements OnInit {
   public buscarDados(refresher?: any) {
     this.multi = [];
     this.requisicoes$ = forkJoin(
-      this.parse.adjetivos('12313'),
+      this.parse.adjetivos(this.auth.facebookUserData.id),
     );
 
     this.requisicoes$.subscribe(resultado => {

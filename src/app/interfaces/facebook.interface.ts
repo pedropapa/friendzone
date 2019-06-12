@@ -1,16 +1,5 @@
 export interface FriendsList {
-  data: Array<{
-    id: string,
-    name: string,
-    picture: {
-      data: {
-        height: number,
-        is_silhouette: boolean,
-        url: string,
-        width: number,
-      }
-    }
-  }>;
+  data: Array<FacebookUser>;
   paging: {
     cursors: {
       after: string,
@@ -20,4 +9,17 @@ export interface FriendsList {
   summary: {
     total_count: number,
   };
+}
+
+export interface FacebookUser {
+  id: string,
+  name: string,
+  picture: {
+    data: {
+      height: number,
+      is_silhouette: boolean,
+      url: string,
+      width: number,
+    }
+  }
 }
