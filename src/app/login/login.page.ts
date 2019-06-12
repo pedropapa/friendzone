@@ -55,6 +55,8 @@ export class LoginPage implements OnInit {
         message: 'Um erro ocorreu ao autenticar no facebook'
       });
 
+      this.importarDados.esconderCarregamento();
+
       alerta.present();
     }
   }
