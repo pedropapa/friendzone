@@ -15,24 +15,31 @@ import {CarregarDadosPage} from './carregar-dados/carregar-dados.page';
 import {FazerDepoimentoPage} from './fazer-depoimento/fazer-depoimento.page';
 import {FazerPerguntaPage} from './fazer-pergunta/fazer-pergunta.page';
 import {ReactiveFormsModule} from '@angular/forms';
+import {PerfilAmigoPage} from './interno/perfil-amigo/perfil-amigo.page';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {DirectivesModule} from './directives/directives.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarregarDadosPage,
     FazerDepoimentoPage,
-    FazerPerguntaPage
+    FazerPerguntaPage,
+    PerfilAmigoPage,
   ],
   entryComponents: [
     CarregarDadosPage,
     FazerDepoimentoPage,
-    FazerPerguntaPage
+    FazerPerguntaPage,
+    PerfilAmigoPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule,
+    DirectivesModule,
   ],
   providers: [
     StatusBar,

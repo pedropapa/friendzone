@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 import {AuthService} from '../../services/auth.service';
 import {FazerDepoimentoPage} from '../../fazer-depoimento/fazer-depoimento.page';
 import {FazerPerguntaPage} from '../../fazer-pergunta/fazer-pergunta.page';
+import {PerfilAmigoPage} from '../perfil-amigo/perfil-amigo.page';
 
 @Component({
   selector: 'app-avaliar',
@@ -81,6 +82,17 @@ export class AvaliarPage implements AfterViewInit {
 
       loading.dismiss();
     }
+  }
+
+  async verPerfil(amigo: FacebookUser) {
+    const modal = await this.modal.create({
+      component: PerfilAmigoPage,
+      componentProps: {
+        amigo: amigo,
+      }
+    });
+
+    modal.present();
   }
 
   async fazerDepoimento(amigo: FacebookUser) {

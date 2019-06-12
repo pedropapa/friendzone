@@ -1,16 +1,11 @@
 <ion-header>
     <ion-toolbar text-center>
-        <ion-buttons slot="start">
-            <ion-avatar>
-                <img [src]="imagemPerfil" alt="" width="35px"/>
-            </ion-avatar>
-        </ion-buttons>
-
         <ion-buttons slot="end">
-            <div routerLink="/login">Sair</div>
+            <ion-button fill="clear" (click)="fechar()">
+                <ion-icon slot="icon-only" color="tertiary" name="md-close"></ion-icon>
+            </ion-button>
         </ion-buttons>
-
-        <ion-title>Dashboard</ion-title>
+        <ion-title>Perfil de {{ amigo.name }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -59,19 +54,13 @@
                                 {{ depoimento.descricao }}
                             </div>
                         </div>
-                        <div class="acoes">
-                            <img src="assets/visivel.svg" *ngIf="!depoimento.escondido" tappable
-                                 (click)="esconderDepoimento(depoimento)"/>
-                            <img src="assets/escondido.svg" *ngIf="depoimento.escondido" tappable
-                                 (click)="mostrarDepoimento(depoimento)"/>
-                        </div>
                     </div>
                 </div>
 
                 <div class="depoimento-registros" *ngIf="!dados[0].length">
                     <div class="registro">
                         <div class="descricao">
-                            Você ainda não recebeu depoimentos =(
+                            {{ amigo.name }} ainda não possui depoimentos =(
                         </div>
                     </div>
                 </div>
@@ -90,19 +79,13 @@
                                 {{ pergunta.descricao }}
                             </div>
                         </div>
-                        <div class="acoes">
-                            <img src="assets/visivel.svg" *ngIf="!pergunta.escondido" tappable
-                                 (click)="ignorarPergunta(pergunta)"/>
-                            <img src="assets/escondido.svg" *ngIf="pergunta.escondido" tappable
-                                 (click)="alertaPerguntaIgnorada()"/>
-                        </div>
                     </div>
                 </div>
 
                 <div class="pergunta-registros" *ngIf="!dados[1].length">
                     <div class="registro">
                         <div class="descricao">
-                            Você ainda não recebeu perguntas =(
+                            {{ amigo.name }} ainda não possui perguntas =(
                         </div>
                     </div>
                 </div>

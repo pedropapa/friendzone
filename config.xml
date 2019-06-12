@@ -3,7 +3,7 @@
     <name>Friendzone</name>
     <description>Rede social anônima.</description>
     <author email="pedro.papadopolis@gmail.com" href="http://pedropapadopolis.com/">Pedro Papadópolis</author>
-    <content original-src="index.html" src="http://192.168.10.34:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -86,6 +86,5 @@
         <variable name="APP_ID" value="777314919314483" />
         <variable name="APP_NAME" value="Friendzone" />
     </plugin>
-    <allow-navigation href="http://192.168.10.34:8100" sessionid="5791a6ab" />
     <engine name="android" spec="6.4.0" />
 </widget>

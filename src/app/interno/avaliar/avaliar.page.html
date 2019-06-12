@@ -9,6 +9,10 @@
         <ion-slides #slides *ngIf="amigos && amigos.data.length" (ionSlideTransitionEnd)="carregarAdjetivos()">
             <ion-slide *ngFor="let amigo of amigos.data">
                 <div class="amigo-container">
+                    <div class="perfil" (click)="verPerfil(amigo)">
+                        Ver Perfil
+                    </div>
+
                     <div class="avatar">
                         <img [src]="amigo.picture.data.url" alt="" width="300px"/>
                     </div>

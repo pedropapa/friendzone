@@ -30,13 +30,13 @@ export class AuthService {
   constructor(platform: Platform) {
     if (!platform.is('cordova')) {
       this.facebookUserData = {
-        'name': 'Gabii Carvalho',
-        'id': '2898975973452979',
+        'name': 'Pedro Papadópolis',
+        'id': '2700021496678896',
         'picture': {
           'data': {
             'height': 200,
             'is_silhouette': false,
-            'url': 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2898975973452979&height=200&width=200&ext=1562941992&hash=AeRTsTtAAQltuA20',
+            'url': 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2700021496678896&height=200&width=200&ext=1562960659&hash=AeT90tX0Lx5bpEOu',
             'width': 200
           }
         }

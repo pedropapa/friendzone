@@ -17,10 +17,6 @@ export class AvaliacoesPage implements OnInit {
   gradient = false;
   showLegend = false;
 
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
-
   multi: any[] = [];
 
   public requisicoes$: Observable<any>;
