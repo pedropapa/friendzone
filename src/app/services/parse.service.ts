@@ -155,4 +155,18 @@ export class ParseService {
 
     return usuarioAdjetivo.save(null, {useMasterKey: true});
   }
+
+  public async criarDepoimento(titulo: string, descricao: string, usuario: FacebookUser): Promise<any> {
+    const DepoimentoModel = Parse.Object.extend('Depoimento');
+
+    const depoimento = new DepoimentoModel();
+
+    depoimento.set('usuarioId', usuario.id);
+    depoimento.set('atribuidoPor', this.auth.facebookUserData.id);
+    depoimento.set('titulo', titulo);
+    depoimento.set('descricao', descricao);
+    depoimento.set('escondido', false);
+
+    return depoimento.save(null, {useMasterKey: true});
+  }
 }

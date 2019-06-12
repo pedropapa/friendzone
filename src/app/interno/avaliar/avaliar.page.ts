@@ -1,12 +1,14 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {ImportarDadosService} from '../../services/importar-dados.service';
-import {FriendsList} from '../../interfaces/facebook.interface';
+import {FacebookUser, FriendsList} from '../../interfaces/facebook.interface';
 import {Observable} from 'rxjs';
 import {AdjetivoInterface} from '../../interfaces/app.interface';
 import {ParseService} from '../../services/parse.service';
-import {AlertController, IonSlides, LoadingController} from '@ionic/angular';
+import {AlertController, IonSlides, LoadingController, ModalController} from '@ionic/angular';
 import {map} from 'rxjs/operators';
 import {AuthService} from '../../services/auth.service';
+import {FazerDepoimentoPage} from '../../fazer-depoimento/fazer-depoimento.page';
+import {FazerPerguntaPage} from '../../fazer-pergunta/fazer-pergunta.page';
 
 @Component({
   selector: 'app-avaliar',
@@ -26,6 +28,7 @@ export class AvaliarPage implements AfterViewInit {
     public loading: LoadingController,
     public alert: AlertController,
     public auth: AuthService,
+    public modal: ModalController,
   ) {
     this.amigos = this.importarDados.listaAmigos;
   }
@@ -78,5 +81,27 @@ export class AvaliarPage implements AfterViewInit {
 
       loading.dismiss();
     }
+  }
+
+  async fazerDepoimento(amigo: FacebookUser) {
+    const modal = await this.modal.create({
+      component: FazerDepoimentoPage,
+      componentProps: {
+        amigo: amigo,
+      }
+    });
+
+    modal.present();
+  }
+
+  async fazerPergunta(amigo: FacebookUser) {
+    const modal = await this.modal.create({
+      component: FazerPerguntaPage,
+      componentProps: {
+        amigo: amigo,
+      }
+    });
+
+    modal.present();
   }
 }

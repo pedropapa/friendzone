@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button fill="clear" (click)="fechar()">
+                <ion-icon slot="icon-only" color="tertiary" name="md-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Fazer Depoimento</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="depoimento-container">
+        <form [formGroup]="formGroup" (submit)="confirmar()">
+            <div class="titulo">Enviando depoimento para {{ amigo.name }}.</div>
+
+            <ion-item>
+                <ion-label position="floating">
+                    Título
+                </ion-label>
+
+                <ion-input placeholder="Ex: Meu primeiro depoimento..." formControlName="titulo"></ion-input>
+            </ion-item>
+
+            <small *ngIf="formGroup.controls.titulo.invalid">
+                Título requerido, máximo de 64 caracteres.
+            </small>
+
+            <br/><br/>
+
+            <ion-item>
+                <ion-label position="floating">
+                    Descrição
+                </ion-label>
+
+                <ion-textarea placeholder="Escreva seu depoimento" cols="40" rows="12"
+                              formControlName="descricao">
+
+                </ion-textarea>
+            </ion-item>
+
+            <small *ngIf="formGroup.controls.descricao.invalid">
+                Mínimo de 10 caracteres, máximo de 1024 caracteres.
+            </small>
+
+            <button type="submit" class="botao" [disabled]="formGroup.invalid">Enviar</button>
+        </form>
+    </div>
+</ion-content>

@@ -1,0 +1,63 @@
+:host {
+  --ion-background-color: #DDDDDD;
+
+  ion-toolbar {
+    --background: #5E5B88;
+    --color: #FFF;
+  }
+
+  ion-textarea {
+    --background: #F0EFEF;
+    --padding-bottom: 5px;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+  }
+
+  ion-item {
+    --border-color: #FFFFFF;
+    --background: #F0EFEF;
+    --padding-bottom: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+    --padding-top: 0;
+  }
+}
+
+.depoimento-container {
+  background-color: #FFF;
+  border: 1px solid #64618C;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+
+  .titulo {
+    margin: 20px auto;
+    font-weight: bold;
+    font-size: 25px;
+    color: #64618C;
+  }
+}
+
+.botao {
+  margin: 80px auto;
+  display: flex;
+  align-items: center;
+
+  background: #E55461;
+  border-radius: 10px;
+  font-family: Helvetica;
+  font-size: 18px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 20px;
+
+  img {
+    margin-right: 10px;
+  }
+
+  &[disabled] {
+    opacity: 0.3;
+  }
+}
+
