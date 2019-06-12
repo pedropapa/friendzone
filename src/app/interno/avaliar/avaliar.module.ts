@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AvaliarPage } from './avaliar.page';
 import {DirectivesModule} from '../../directives/directives.module';
+import {ComponentsModule} from '../../components/components.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     DirectivesModule,
+    ComponentsModule,
   ],
   declarations: [AvaliarPage]
 })

@@ -45,9 +45,9 @@
             </ion-slide>
         </ion-slides>
 
-        <div class="semAmigos" *ngIf="!amigos || !amigos.data.length">
+        <app-estado-vazio *ngIf="!amigos || !amigos.data.length">
             Você ainda não possui amigos com o aplicativo instalado para avaliar =(
-        </div>
+        </app-estado-vazio>
     </div>
 </ion-content>
 

@@ -16,29 +16,7 @@ export class ImportarDadosService {
   ) {
     if (!platform.is('cordova')) {
       this.listaAmigos = {
-        'data': [{
-          'name': 'Gabii Carvalho',
-          'id': '2898975973452979',
-          'picture': {
-            'data': {
-              'height': 200,
-              'is_silhouette': false,
-              'url': 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2898975973452979&height=200&width=200&ext=1562941992&hash=AeRTsTtAAQltuA20',
-              'width': 200
-            }
-          }
-        },{
-          'name': 'Leandro Papadópolis',
-          'id': '2898975973452978',
-          'picture': {
-            'data': {
-              'height': 200,
-              'is_silhouette': false,
-              'url': 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2898975973452979&height=200&width=200&ext=1562941992&hash=AeRTsTtAAQltuA20',
-              'width': 200
-            }
-          }
-        }],
+        'data': [],
         'paging': {
           'cursors': {
             'before': 'QVFIUnFIeWxFMUxvUHNuTHJVbmtHZAnp5cGk5WnBMWFdQV1NQUUtrT3ZAab0Njc24zczd2dm1WNnhQalJGZA3RxcDdqVXZAOUWc0alY0cEd2eFNoclJKMFVRdDR3',
