@@ -1,9 +1,97 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Minhas Perguntas</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Minhas Perguntas</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="buscarDados($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
+    <div class="pergunta-container">
+        <ng-container [apresentarAsync]="requisicoes$">
+            <div *casoCarregando>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+            </div>
+            <div *casoResultado="let dados">
+                <div class="pergunta-registros" *ngIf="dados[0].length">
+                    <div class="registro go-up" [ngClass]="['delay-' + i]"
+                         *ngFor="let pergunta of dados[0]; let i = index" [formGroup]="formGroup">
+                        <div class="dados">
+                            <div class="titulo">{{ pergunta.titulo }}</div>
+                            <div class="descricao" *ngIf="pergunta.resposta && pergunta.resposta.length">
+                                R. {{ pergunta.resposta }}
+                            </div>
+
+                            <div *ngIf="respostaHabilitada[pergunta.objectId]">
+                                <ion-textarea placeholder="Escreva sua resposta" cols="40" rows="4"
+                                              formControlName="resposta">
+
+                                </ion-textarea>
+                            </div>
+
+                            <div class="acoes">
+                                <ng-container *ngIf="respostaHabilitada[pergunta.objectId]">
+                                    <div class="acao" *ngIf="!pergunta.escondido"
+                                         (click)="enviarResposta(pergunta)">
+                                        <img src="assets/responder.svg" tappable alt=""/>
+                                        <div>
+                                            Enviar
+                                        </div>
+                                    </div>
+
+                                    <div class="acao vermelho" *ngIf="!pergunta.escondido"
+                                         (click)="desabilitarResposta(pergunta)">
+                                        <div>
+                                            Cancelar
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container
+                                        *ngIf="!respostaHabilitada[pergunta.objectId]
+                                        && (!pergunta.resposta || !pergunta.resposta.length)">
+                                    <div class="acao" *ngIf="!pergunta.escondido"
+                                         (click)="habilitarResposta(pergunta)">
+                                        <img src="assets/responder.svg" tappable alt=""/>
+                                        <div>
+                                            Responder
+                                        </div>
+                                    </div>
+
+                                    <div class="acao vermelho" *ngIf="!pergunta.escondido"
+                                         (click)="ignorarPergunta(pergunta)">
+                                        <img src="assets/visivel-vermelho.svg" tappable alt="" width="25px"/>
+                                        <div>
+                                            Ignorar
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="horario">
+                            {{ pergunta.createdAt | date: 'HH:mm' }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pergunta-registros" *ngIf="!dados[0].length">
+                    <div class="registro">
+                        <div class="descricao">
+                            Você ainda não recebeu perguntas =(
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ng-container>
+    </div>
 </ion-content>

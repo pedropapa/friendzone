@@ -3,4 +3,72 @@
     --background: #5E5B88;
     --color: #FFF;
   }
+
+  ion-textarea {
+    --background: #F0EFEF;
+    --padding-bottom: 5px;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+  }
+}
+
+.pergunta-container {
+  margin: 0 auto 15px auto;
+
+  .pergunta-registros {
+    .registro {
+      background-color: #FFF;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 15px;
+      border-bottom: 1px solid #D8D8D8;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .descricao {
+        color: #929DAB;
+        font-size: 14px;
+      }
+
+      .acoes {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+
+        .acao {
+          margin-right: 15px;
+          border: 1px solid #D8D8D8;
+          border-radius: 5px;
+          padding: 5px;
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          height: 33px;
+
+          &.vermelho {
+            div {
+              color: #E14B57;
+            }
+          }
+
+          img {
+            margin-right: 15px;
+          }
+
+          div {
+            color: #46466B;
+          }
+        }
+      }
+
+      .horario {
+        color: #E55561;
+        font-size: 15px;
+      }
+    }
+  }
 }

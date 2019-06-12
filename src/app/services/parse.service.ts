@@ -34,6 +34,14 @@ export class ParseService {
     return from(query.get(pergunta.objectId));
   }
 
+  public async responderPergunta(perguntaDados: PerguntaInterface, resposta: string) {
+    const pergunta = await this.pergunta(perguntaDados).toPromise();
+
+    pergunta.set('resposta', resposta);
+
+    return pergunta.save();
+  }
+
   public depoimentos(userId: string, mostrarEscondidos?: boolean, limite?: number): Observable<Array<DepoimentoInterface>> {
     const query = this.query('Depoimento');
 
