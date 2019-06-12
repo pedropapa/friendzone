@@ -6,5 +6,5 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InternoGuard  {
-  
+
 }

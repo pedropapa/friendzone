@@ -10,14 +10,14 @@ export interface FriendsList {
         width: number,
       }
     }
-  }>,
+  }>;
   paging: {
     cursors: {
       after: string,
       before: string,
     }
-  },
+  };
   summary: {
     total_count: number,
-  },
+  };
 }

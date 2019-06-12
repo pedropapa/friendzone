@@ -178,13 +178,13 @@ export class StringUtil {
   static removeDiacritics(str) {
     if (Object.keys(this.diacriticsMap).length === 0) {
       for (let i = 0; i < this.defaultDiacriticsRemovalMap.length; i++) {
-        let letters = this.defaultDiacriticsRemovalMap [i].letters;
+        const letters = this.defaultDiacriticsRemovalMap [i].letters;
         for (let j = 0; j < letters.length; j++) {
           this.diacriticsMap[letters[j]] = this.defaultDiacriticsRemovalMap [i].base;
         }
       }
     }
-    let me = this;
+    const me = this;
     return str.replace(/[^\u0000-\u007E]/g, function (a) {
       return me.diacriticsMap[a] || a;
     });
@@ -199,7 +199,7 @@ export class StringUtil {
 }
 
 export function soDigitos(numeroFormatado: string) {
-  let numerosArr = numeroFormatado.match(/\d/g);
+  const numerosArr = numeroFormatado.match(/\d/g);
 
   if (numerosArr && numerosArr.length) {
     return numerosArr.join('');
