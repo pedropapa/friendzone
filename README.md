@@ -9,7 +9,7 @@ Aplicativo desenvolvido como TCC para o curso de ADS do UniCEUB.
 ### iOS
 - Desenvolvimento:
     1. Baixe o aplicativo TestFlight na AppStore.
-    2. Acesse o link ```em breve``` e instale o aplicativo.
+    2. Acesse o link https://testflight.apple.com/join/DnoM2Gsp e instale o aplicativo.
     3. Clique em “começar a testar” e pronto, as atualizações aparecerão automaticamente para download no TestFlight.
 
 ### Android
