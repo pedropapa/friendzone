@@ -1,4 +1,11 @@
-## friendzone
+<table>
+    <td><img src="https://github.com/pedropapa/friendzone/blob/master/src/assets/printscreens/tela1.png" width="300px"/></td>
+    <td><img src="https://github.com/pedropapa/friendzone/blob/master/src/assets/printscreens/tela2.png" width="300px"/></td>
+    <td><img src="https://github.com/pedropapa/friendzone/blob/master/src/assets/printscreens/tela3.png" width="300px"/></td>
+    <td><img src="https://github.com/pedropapa/friendzone/blob/master/src/assets/printscreens/tela4.png" width="300px"/></td>
+</table>
+
+## Friendzone
 Aplicativo desenvolvido como TCC para o curso de ADS do UniCEUB.
 
 ## Contribuindo
