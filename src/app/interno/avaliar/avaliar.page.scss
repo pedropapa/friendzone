@@ -25,6 +25,10 @@
     }
 
     .avatar {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+
       img {
         border-radius: 50%;
       }
@@ -44,6 +48,7 @@
 
       .acao {
         margin: 10px;
+
         div {
           font-size: 15px;
           color: #E55461;
@@ -57,24 +62,64 @@
   margin: 40px;
 }
 
-.adjetivos {
+.backdrop {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .5;
+  z-index: 5;
+}
+
+.adjetivos-container {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   background-color: #FFF;
   padding: 15px;
-  max-height: 130px;
-  overflow-y: scroll;
-  flex-flow: row wrap;
-  display: flex;
-  align-items: center;
+  z-index: 10;
+  opacity: 1;
 
-  .adjetivo {
-    border: 1px solid #E55461;
-    color: #E55461;
-    border-radius: 10px;
-    margin: 5px;
-    padding: 5px;
+  .titulo {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .adjetivos {
+    margin: 0 auto;
+    max-height: 350px;
+    overflow-y: scroll;
+    flex-flow: row wrap;
+    display: flex;
+    align-items: center;
+
+    .adjetivo {
+      border: 1px solid #E55461;
+      color: #E55461;
+      border-radius: 10px;
+      margin: 5px;
+      padding: 5px;
+
+      &.atribuido {
+        animation: fadeOut .5s linear;
+      }
+    }
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    transform: translateY(-20px);
+    opacity: 0;
   }
 }

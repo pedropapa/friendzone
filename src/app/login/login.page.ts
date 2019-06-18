@@ -52,7 +52,12 @@ export class LoginPage implements OnInit {
 
       const alerta = await this.alert.create({
         header: 'Oops!',
-        message: 'Um erro ocorreu ao autenticar no facebook'
+        message: 'Um erro ocorreu ao autenticar no facebook',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       this.importarDados.esconderCarregamento();

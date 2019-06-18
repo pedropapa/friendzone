@@ -78,6 +78,7 @@ export class FazerDepoimentoPage implements OnInit {
       const toast = await this.toast.create({
         message: 'Depoimento enviado!',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -91,6 +92,11 @@ export class FazerDepoimentoPage implements OnInit {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao enviar o depoimento!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();

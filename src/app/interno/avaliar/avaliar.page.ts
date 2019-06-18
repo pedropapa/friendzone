@@ -10,6 +10,7 @@ import {AuthService} from '../../services/auth.service';
 import {FazerDepoimentoPage} from '../../fazer-depoimento/fazer-depoimento.page';
 import {FazerPerguntaPage} from '../../fazer-pergunta/fazer-pergunta.page';
 import {PerfilAmigoPage} from '../perfil-amigo/perfil-amigo.page';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-avaliar',
@@ -21,7 +22,10 @@ export class AvaliarPage implements AfterViewInit {
 
   public amigos: FriendsList;
   public adjetivos$: Observable<Array<AdjetivoInterface>>;
+  public adjetivos: Array<AdjetivoInterface>;
   public mostrarSelecaoAdjetivos = false;
+  public adjetivosAtribuidos: Array<number> = [];
+  public amigoSelecionado: FacebookUser;
 
   constructor(
     public importarDados: ImportarDadosService,
@@ -43,16 +47,19 @@ export class AvaliarPage implements AfterViewInit {
 
     const amigo = this.amigos.data[sliderIndex];
 
+    this.amigoSelecionado = amigo;
+
     const amigoAdjetivos = await this.parse.adjetivos(amigo.id, this.auth.facebookUserData.id);
 
     this.adjetivos$ = this.parse.todosAdjetivos().pipe(
       map(adjetivos => adjetivos.filter(adjetivo =>
         !amigoAdjetivos.find(amigoAdjetivo => amigoAdjetivo.adjetivo === adjetivo.nome)))
     );
+
+    this.adjetivos$.subscribe(adjetivos => this.adjetivos = adjetivos);
   }
 
   toggleSelecaoAdjetivos() {
-    this.carregarAdjetivos();
     this.mostrarSelecaoAdjetivos = !this.mostrarSelecaoAdjetivos;
   }
 
@@ -67,7 +74,17 @@ export class AvaliarPage implements AfterViewInit {
     try {
       await this.parse.atribuirAdjetivo(adjetivo, amigo);
 
-      this.carregarAdjetivos();
+      const adjetivoAtribuido = this.adjetivosAtribuidos[amigo.id];
+
+      if (!adjetivoAtribuido) {
+        this.adjetivosAtribuidos[amigo.id] = [];
+      }
+
+      this.adjetivosAtribuidos[amigo.id][adjetivo.nome] = true;
+
+      setTimeout(() => {
+        this.adjetivos = _.without(this.adjetivos, adjetivo);
+      }, 499);
 
       loading.dismiss();
     } catch (err) {
@@ -76,6 +93,11 @@ export class AvaliarPage implements AfterViewInit {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: err || 'Um erro ocorreu ao atribuir o adjetivo!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();

@@ -71,6 +71,7 @@ export class FazerPerguntaPage implements OnInit {
       const toast = await this.toast.create({
         message: 'Pergunta feita! Aguarde seu amigo responder =)',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -84,6 +85,11 @@ export class FazerPerguntaPage implements OnInit {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao fazer a pergunta!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();

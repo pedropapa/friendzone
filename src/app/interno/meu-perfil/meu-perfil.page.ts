@@ -86,6 +86,7 @@ export class MeuPerfilPage implements AfterViewInit {
       const toast = await this.toast.create({
         message: 'O depoimento foi escondido!',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -97,6 +98,11 @@ export class MeuPerfilPage implements AfterViewInit {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao esconder o depoimento!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();
@@ -120,6 +126,7 @@ export class MeuPerfilPage implements AfterViewInit {
       const toast = await this.toast.create({
         message: 'O depoimento foi mostrado!',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -131,6 +138,11 @@ export class MeuPerfilPage implements AfterViewInit {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao esconder o depoimento!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();
@@ -154,6 +166,7 @@ export class MeuPerfilPage implements AfterViewInit {
       const toast = await this.toast.create({
         message: 'O pergunta foi ignorada!',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -165,6 +178,11 @@ export class MeuPerfilPage implements AfterViewInit {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao ignorar a pergunta!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();
@@ -177,6 +195,11 @@ export class MeuPerfilPage implements AfterViewInit {
     const alert = await this.alert.create({
       header: 'Oops!',
       message: 'Esta pergunta está ignorada, não é possível modificá-la.',
+      buttons: [
+        {
+          text: 'Fechar',
+        }
+      ]
     });
 
     alert.present();

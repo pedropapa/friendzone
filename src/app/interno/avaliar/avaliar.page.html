@@ -41,7 +41,6 @@
                         </div>
                     </div>
                 </div>
-
             </ion-slide>
         </ion-slides>
 
@@ -51,18 +50,31 @@
     </div>
 </ion-content>
 
-<div class="adjetivos go-up" *ngIf="mostrarSelecaoAdjetivos">
-    <ng-container [apresentarAsync]="adjetivos$">
-        <ng-container *casoCarregando>
-            <div class="skel-line"></div>
-            <div class="skel-line"></div>
-        </ng-container>
+<div class="backdrop" (click)="toggleSelecaoAdjetivos()" *ngIf="mostrarSelecaoAdjetivos">
 
-        <ng-container *casoResultado="let adjetivos">
-            <div tappable class="adjetivo" *ngFor="let adjetivo of adjetivos"
-                 (click)="atribuirAdjetivo(adjetivo)">
-                {{ adjetivo.nome }}
-            </div>
+</div>
+
+<div class="adjetivos-container" *ngIf="mostrarSelecaoAdjetivos">
+    <div class="titulo">Escolha os adjetivos</div>
+
+    <div class="adjetivos">
+        <ng-container [apresentarAsync]="adjetivos$">
+            <ng-container *casoCarregando>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+                <div class="skel-line"></div>
+            </ng-container>
+
+            <ng-container *casoResultado>
+                <div tappable class="adjetivo go-up"
+                     [ngClass]="{'atribuido': (adjetivosAtribuidos[amigoSelecionado.id]
+                     && adjetivosAtribuidos[amigoSelecionado.id][adjetivo.nome])}"
+                     *ngFor="let adjetivo of adjetivos"
+                     (click)="atribuirAdjetivo(adjetivo)">
+                    {{ adjetivo.nome }}
+                </div>
+            </ng-container>
         </ng-container>
-    </ng-container>
+    </div>
 </div>

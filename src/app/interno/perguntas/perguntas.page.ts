@@ -70,6 +70,7 @@ export class PerguntasPage {
       const toast = await this.toast.create({
         message: 'O pergunta foi ignorada!',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -83,6 +84,11 @@ export class PerguntasPage {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao ignorar a pergunta!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();
@@ -103,6 +109,7 @@ export class PerguntasPage {
       const toast = await this.toast.create({
         message: 'O pergunta foi respondida!',
         duration: 3000,
+        position: 'top',
       });
 
       toast.present();
@@ -116,6 +123,11 @@ export class PerguntasPage {
       const alert = await this.alert.create({
         header: 'Oops!',
         message: 'Um erro ocorreu ao ignorar a pergunta!',
+        buttons: [
+          {
+            text: 'Fechar',
+          }
+        ]
       });
 
       alert.present();
