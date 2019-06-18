@@ -58,6 +58,11 @@
       align-items: center;
       justify-content: space-between;
 
+      .acoes {
+        min-width: 31px;
+        margin-left: 5px;
+      }
+
       .descricao {
         color: #929DAB;
         font-size: 14px;
