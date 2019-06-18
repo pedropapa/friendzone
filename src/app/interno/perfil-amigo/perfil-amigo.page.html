@@ -5,7 +5,7 @@
                 <ion-icon slot="icon-only" color="tertiary" name="md-close"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title>Perfil de {{ amigo.name }}</ion-title>
+        <ion-title>{{ amigo.name }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -38,7 +38,7 @@
         </div>
         <div *casoResultado="let dados">
             <div *ngIf="!dados[2].length" class="logo go-up">
-                <img src="assets/logo-only.svg"/>
+                <img src="assets/graph-placeholder.svg"/>
             </div>
 
             <div class="depoimento-container go-up">

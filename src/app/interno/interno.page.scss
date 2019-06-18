@@ -2,15 +2,20 @@
   --ion-background-color: #DDDDDD;
 
   ion-tab-button {
-    --background-focused: #FFFFFF;
-    --background: #5E5B88;
+    --background: #9e99d8;
     --color: #FFF;
-    --color-selected: #E55561;
+    --color-selected: #FFF;
+
+    &.tab-selected {
+      --background: #5E5B88;
+    }
 
     &:nth-child(3) {
-      --color-selected: #FFF;
-      --background-focused: #FF878E;
-      --background: #E55561;
+      --background: #FF878E;
+
+      &.tab-selected {
+        --background: #E55561;
+      }
     }
   }
 }
