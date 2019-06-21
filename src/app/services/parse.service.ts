@@ -119,6 +119,8 @@ export class ParseService {
       }
     });
 
+    resultado.sort((a, b) => (a.quantidade >= b.quantidade) ? -1 : 1);
+
     return resultado;
   }
 

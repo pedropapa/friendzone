@@ -11,6 +11,7 @@ import {FazerDepoimentoPage} from '../../fazer-depoimento/fazer-depoimento.page'
 import {FazerPerguntaPage} from '../../fazer-pergunta/fazer-pergunta.page';
 import {PerfilAmigoPage} from '../perfil-amigo/perfil-amigo.page';
 import * as _ from 'underscore';
+import {Facebook} from '@ionic-native/facebook/ngx';
 
 @Component({
   selector: 'app-avaliar',
@@ -31,11 +32,27 @@ export class AvaliarPage implements AfterViewInit {
     public importarDados: ImportarDadosService,
     public parse: ParseService,
     public loading: LoadingController,
+    private fb: Facebook,
     public alert: AlertController,
     public auth: AuthService,
     public modal: ModalController,
   ) {
     this.amigos = this.importarDados.listaAmigos;
+  }
+
+  ngOnInit() {
+    this.buscarDados();
+  }
+
+  public async buscarDados(refresher?: any) {
+    this.importarDados.listaAmigos = await this.fb.api(
+      `/${this.auth.facebookAuthData.userID}/friends?fields=name,id,picture.type(large)`,
+      ['user_friends']
+    );
+
+    if (refresher) {
+      refresher.target.complete();
+    }
   }
 
   ngAfterViewInit(): void {

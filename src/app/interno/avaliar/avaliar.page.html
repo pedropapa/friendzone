@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="buscarDados($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
     <div class="amigos-container">
         <ion-slides #slides *ngIf="amigos && amigos.data.length" (ionSlideTransitionEnd)="carregarAdjetivos()">
             <ion-slide *ngFor="let amigo of amigos.data">
